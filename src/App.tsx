@@ -1,9 +1,10 @@
 import "./App.css";
+import Home from "./pages/Home";
 
-function App() {
+function App(): React.ReactElement {
   return (
     <div>
-      <h2 className="text-xl text-orange-400">Hello Web</h2>
+      <Home />
     </div>
   );
 }
