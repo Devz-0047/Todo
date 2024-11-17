@@ -11,6 +11,9 @@ function Navbar(): ReactElement {
     e.preventDefault();
     // console.log(query);
   };
+  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(e.target.value);
+  };
 
   return (
     <div className="flex items-center justify-between h-[5rem] w-screen bg-zinc-200">
@@ -37,6 +40,7 @@ function Navbar(): ReactElement {
             <select
               className="px-2 py-[0.12rem] bg-[#c1bfbb] text-mg font-semibold text-slate-950"
               value={filter}
+              onChange={handleFilterChange}
             >
               <option>Priority</option>
               <option>Time</option>
