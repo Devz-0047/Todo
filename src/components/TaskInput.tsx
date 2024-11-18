@@ -9,7 +9,7 @@ interface TaskInputProps {
 }
 
 function TaskInput({ bgColor, handleIsFormOpen }: TaskInputProps) {
-  const { state, dispatch } = useTaskContext();
+  const { dispatch } = useTaskContext();
   const [newTaskTitle, setNewTaskTitle] = useState<string>("");
   const [newTaskDescription, setNewTaskDescription] = useState<string>("");
   const [newTaskPriority, setNewTaskPriority] = useState<string>("Low");

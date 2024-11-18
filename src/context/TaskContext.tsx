@@ -58,7 +58,7 @@ const taskReducer = (state: TaskState, action: TaskAction): TaskState => {
       };
 
     default:
-      throw new Error(`Unhandled action type: ${action.type}`);
+      throw new Error(`Unhandled action type: ${(action as TaskAction).type}`);
   }
 };
 

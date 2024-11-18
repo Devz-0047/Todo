@@ -4,6 +4,7 @@ import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { useTaskContext } from "../context/TaskContext";
 interface TaskItemProps {
   taskData: Task;
+  bgColor: string;
 }
 function TaskItem({ taskData }: TaskItemProps) {
   const { dispatch } = useTaskContext();
