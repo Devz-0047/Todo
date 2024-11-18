@@ -165,48 +165,124 @@
 // };
 
 // export default DropletEffect;
+// import { useState } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import { BsPlusCircleFill } from "react-icons/bs";
+// import { FaCircle } from "react-icons/fa";
+
+// const colorsMap = ["#FF6347", "#FFD700", "#32CD32", "#1E90FF", "#8A2BE2"];
+
+// const DropletEffect = () => {
+//   const [isClicked, setIsClicked] = useState(false);
+//   const [isAddOpen, setIsAddOpen] = useState(false);
+
+//   const handleAddOpen = () => setIsAddOpen(!isAddOpen);
+//   const handleClick = () => setIsClicked(!isClicked);
+//   const handleBgColorChange = (color: string) =>
+//     console.log("Changed background to", color);
+//   const handleIsFormOpen = () => console.log("Form opened");
+
+//   return (
+//     <div className="flex flex-col items-center gap-6 justify-start w-[6rem] h-screen bg-zinc-200 pt-10">
+//       {/* Main Button (BsPlusCircleFill) */}
+//       <motion.button
+//         onClick={() => {
+//           handleAddOpen();
+//           handleClick();
+//         }}
+//         animate={isClicked ? { rotate: 360, scale: 1.1 } : {}}
+//         transition={{ duration: 0.6, ease: "easeIn" }}
+//       >
+//         <BsPlusCircleFill className="text-4xl" />
+//       </motion.button>
+
+//       {/* Droplet Buttons */}
+//       {isAddOpen && (
+//         <AnimatePresence>
+//           <motion.div
+//             className="flex flex-col items-center gap-4"
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: 1 }}
+//             exit={{ opacity: 0 }} // Make the buttons fade out when isAddOpen is false
+//             transition={{ duration: 0.6 }}
+//           >
+//             {colorsMap.map((color, index) => (
+//               <motion.button
+//                 key={color}
+//                 onClick={() => {
+//                   handleBgColorChange(color);
+//                   handleIsFormOpen();
+//                 }}
+//                 className="p-2"
+//                 initial={{ y: -50, opacity: 0 }} // Start above the screen
+//                 animate={{ y: 0, opacity: 1 }} // Move to its final position
+//                 exit={{ y: 50, opacity: 0 }} // Move out of view and fade out when isAddOpen is false
+//                 transition={{
+//                   duration: 0.6,
+//                   delay: index * 0.2, // Stagger the animations on entrance
+//                   ease: "easeOut",
+//                 }}
+//               >
+//                 <FaCircle className="text-3xl" style={{ color }} />
+//               </motion.button>
+//             ))}
+//           </motion.div>
+//         </AnimatePresence>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default DropletEffect;
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { FaCircle } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
-const colorsMap = ["#FF6347", "#FFD700", "#32CD32", "#1E90FF", "#8A2BE2"];
+interface SidebarProps {
+  handleIsFormOpen: () => void;
+  handleBgColorChange: (color: string) => void;
+}
 
-const DropletEffect = () => {
+function Sidebar({ handleIsFormOpen, handleBgColorChange }: SidebarProps) {
+  const [isAddOpen, setIsAddOpen] = useState<boolean>(false);
   const [isClicked, setIsClicked] = useState(false);
-  const [isAddOpen, setIsAddOpen] = useState(false);
 
-  const handleAddOpen = () => setIsAddOpen(!isAddOpen);
-  const handleClick = () => setIsClicked(!isClicked);
-  const handleBgColorChange = (color) =>
-    console.log("Changed background to", color);
-  const handleIsFormOpen = () => console.log("Form opened");
+  const handleAddOpen = () => {
+    setIsAddOpen((prevState) => !prevState);
+  };
+
+  const handleClick = () => {
+    setIsClicked(true);
+    setTimeout(() => setIsClicked(false), 1000); // Reset after 1 second
+  };
+
+  const colorOptions = ["#F5972C", "#F3542A", "#7049F0", "#0AA4F6", "#C6D947"];
 
   return (
     <div className="flex flex-col items-center gap-6 justify-start w-[6rem] h-screen bg-zinc-200 pt-10">
-      {/* Main Button (BsPlusCircleFill) */}
       <motion.button
         onClick={() => {
           handleAddOpen();
-          handleClick();
+          if (!isClicked) handleClick();
         }}
-        animate={isClicked ? { rotate: 360, scale: 1.1 } : {}}
+        animate={isClicked ? { rotate: [0, 360], scale: 1.2 } : {}}
         transition={{ duration: 0.6, ease: "easeIn" }}
+        onAnimationComplete={() => setIsClicked(false)}
       >
         <BsPlusCircleFill className="text-4xl" />
       </motion.button>
 
-      {/* Droplet Buttons */}
-      {isAddOpen && (
-        <AnimatePresence>
+      <AnimatePresence>
+        {isAddOpen && (
           <motion.div
             className="flex flex-col items-center gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }} // Make the buttons fade out when isAddOpen is false
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {colorsMap.map((color, index) => (
+            {colorOptions.map((color, index) => (
               <motion.button
                 key={color}
                 onClick={() => {
@@ -214,12 +290,12 @@ const DropletEffect = () => {
                   handleIsFormOpen();
                 }}
                 className="p-2"
-                initial={{ y: -50, opacity: 0 }} // Start above the screen
-                animate={{ y: 0, opacity: 1 }} // Move to its final position
-                exit={{ y: 50, opacity: 0 }} // Move out of view and fade out when isAddOpen is false
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -50, opacity: 0 }}
                 transition={{
                   duration: 0.6,
-                  delay: index * 0.2, // Stagger the animations on entrance
+                  delay: index * 0.2, // Staggered animation
                   ease: "easeOut",
                 }}
               >
@@ -227,10 +303,10 @@ const DropletEffect = () => {
               </motion.button>
             ))}
           </motion.div>
-        </AnimatePresence>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
-};
+}
 
-export default DropletEffect;
+export default Sidebar;
