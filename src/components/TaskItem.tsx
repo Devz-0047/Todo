@@ -47,7 +47,7 @@ function TaskItem({ taskData }: TaskItemProps) {
             dispatch({ type: "REMOVE_TASK", payload: taskData.id })
           }
         >
-          <MdDelete className="text-2xl" />
+          <MdDelete className="text-2xl hover:text-red-700" />
         </button>
       </div>
       <div className="absolute bottom-2 right-8">

@@ -59,7 +59,7 @@ function Home() {
           handleBgColorChange={handleBgColorChange}
         />
 
-        <div className="flex-grow pl-4">
+        <div className="flex-grow pl-4 bg-gray-100">
           <TaskList
             isFormOpen={isFormOpen}
             taskBgColor={taskBgColor}
