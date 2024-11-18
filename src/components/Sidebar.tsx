@@ -63,7 +63,7 @@ function Sidebar({ handleIsFormOpen, handleBgColorChange }: SidebarProps) {
         <BsPlusCircleFill className="text-4xl" />
       </button>
 
-      {isAddOpen ? (
+      {!isAddOpen ? (
         <></>
       ) : (
         <>
