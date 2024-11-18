@@ -56,7 +56,11 @@ function Home() {
         />
 
         <div className="flex-grow pl-4">
-          <TaskList isFormOpen={isFormOpen} taskBgColor={taskBgColor} />
+          <TaskList
+            isFormOpen={isFormOpen}
+            taskBgColor={taskBgColor}
+            handleIsFormOpen={handleIsFormOpen}
+          />
         </div>
       </div>
     </div>

@@ -4,13 +4,18 @@ import {
   useContext,
   useReducer,
   useMemo,
+  useEffect,
 } from "react";
 import { Task } from "../types/task";
+import {
+  loadFromLocalStorage,
+  saveToLocalStorage,
+} from "../utils/localStorage";
 
 interface TaskState {
   tasks: Task[];
 }
-
+const LOCAL_STORAGE_KEY = "tasks";
 type TaskAction =
   | { type: "ADD_TASK"; payload: Task }
   | { type: "REMOVE_TASK"; payload: string }
@@ -21,13 +26,13 @@ type TaskAction =
     };
 
 const initialState: TaskState = {
-  tasks: [],
+  tasks: loadFromLocalStorage<Task[]>(LOCAL_STORAGE_KEY) || [],
 };
 
 const taskReducer = (state: TaskState, action: TaskAction): TaskState => {
   switch (action.type) {
     case "ADD_TASK":
-      return { tasks: [...state.tasks, action.payload] };
+      return { tasks: [action.payload, ...state.tasks] };
 
     case "REMOVE_TASK":
       return {
@@ -64,6 +69,9 @@ const TaskContext = createContext<{
 
 export const TaskProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(taskReducer, initialState);
+  useEffect(() => {
+    saveToLocalStorage(LOCAL_STORAGE_KEY, state.tasks);
+  }, [state.tasks]);
   const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;

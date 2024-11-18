@@ -26,15 +26,27 @@ import TaskItem from "./TaskItem";
 interface TaskListProps {
   isFormOpen: boolean;
   taskBgColor: string;
+  handleIsFormOpen: () => void;
 }
 
-function TaskList({ isFormOpen, taskBgColor }: TaskListProps) {
+function TaskList({
+  isFormOpen,
+  taskBgColor,
+  handleIsFormOpen,
+}: TaskListProps) {
   const { state } = useTaskContext();
 
   return (
     <div className="mt-12 ">
       <ul className="flex flex-wrap items-center justify-center gap-16">
-        {isFormOpen ? <TaskInput bgColor={taskBgColor} /> : <></>}
+        {isFormOpen ? (
+          <TaskInput
+            bgColor={taskBgColor}
+            handleIsFormOpen={handleIsFormOpen}
+          />
+        ) : (
+          <></>
+        )}
         {state.tasks.map((task) => (
           <li key={task.id}>
             <TaskItem taskData={task} bgColor={taskBgColor} />

@@ -1,27 +1,73 @@
-# React + TypeScript + Vite
+# Task Manager Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. Application and Functionality
 
-Currently, two official plugins are available:
+The Task Manager Application is a React-based tool designed to help users manage their tasks effectively. The app allows users to:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Add tasks** with a title, description, priority level, and automatically generated date.
+- **Mark tasks as completed** or toggle their completion status.
+- **Delete tasks** when no longer needed.
+- **Prioritize tasks** using color-coded labels:
+  - Low: 🟢 Green
+  - Medium: 🟡 Yellow
+  - High: 🔴 Red.
 
-## Expanding the ESLint configuration
+The app is built with a **responsive design** and styled using **Tailwind CSS**, ensuring accessibility and usability across devices.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 2. Setup and Launch Process
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+### Prerequisites
+
+- **Node.js** installed on your system.
+- A package manager like **npm** or **yarn**.
+
+### Setup Steps
+
+#### Clone the Repository
+
+```bash
+git clone https://github.com/Devz-0047/Todo
+cd task-manager
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+#### Install Dependencies
+
+```bash
+npm install
+```
+
+#### Run the Development Server
+
+```bash
+npm run dev
+```
+
+## 3. Assumptions Made During Development
+
+### Default Priority Levels
+
+- Tasks are assigned one of three priority levels: **Low**, **Medium**, or **High**.
+
+### Date Formatting
+
+- The `date-fns` library is used to format the task creation date as `MMM dd yyyy`.
+
+### Unique IDs
+
+- Tasks are assigned unique IDs using `crypto.randomUUID()`, assuming browser support for this method.
+
+### Single User Scope
+
+- This version assumes a single-user application without authentication or multi-user functionality.
+
+### Persistent State
+
+- Currently, state is maintained in memory and will reset upon reload. Local storage or backend support is not included.
+
+## 4. Screenshots
+
+### Task Manager interface
+
+![Home Page](./screenshots/Home.PNG)

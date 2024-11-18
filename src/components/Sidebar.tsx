@@ -72,7 +72,7 @@ function Sidebar({ handleIsFormOpen, handleBgColorChange }: SidebarProps) {
               key={color}
               onClick={() => {
                 handleBgColorChange(color);
-                handleIsFormOpen((previous) => !previous);
+                handleIsFormOpen();
               }}
               className="p-2"
             >

@@ -5,9 +5,10 @@ import { format } from "date-fns";
 
 interface TaskInputProps {
   bgColor: string;
+  handleIsFormOpen: () => void;
 }
 
-function TaskInput({ bgColor }: TaskInputProps) {
+function TaskInput({ bgColor, handleIsFormOpen }: TaskInputProps) {
   const { state, dispatch } = useTaskContext();
   const [newTaskTitle, setNewTaskTitle] = useState<string>("");
   const [newTaskDescription, setNewTaskDescription] = useState<string>("");
@@ -27,6 +28,7 @@ function TaskInput({ bgColor }: TaskInputProps) {
     dispatch({ type: "ADD_TASK", payload: newTask });
     setNewTaskTitle("");
     setNewTaskDescription("");
+    handleIsFormOpen();
   };
   const resizeTextarea = () => {
     if (textareaRef.current) {
@@ -39,9 +41,17 @@ function TaskInput({ bgColor }: TaskInputProps) {
       className={`min-w-[16rem] max-w-[16rem] min-h-[17rem] rounded-md relative `}
       style={{ backgroundColor: bgColor }}
     >
+      <button
+        onClick={() => {
+          handleIsFormOpen();
+        }}
+        className="absolute top-1 right-1"
+      >
+        &#x274c;
+      </button>
       <form
         onSubmit={handleAddTask}
-        className="flex flex-col items-center justify-center gap-4 pt-6"
+        className="flex flex-col items-center justify-center gap-4 pt-8"
       >
         <input
           type="text"
