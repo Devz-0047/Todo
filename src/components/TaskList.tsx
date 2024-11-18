@@ -39,7 +39,7 @@ function TaskList({
   handleIsFormOpen,
 }: TaskListProps) {
   const { state } = useTaskContext();
-  const [isAscending, setIsAscending] = useState<boolean>(true);
+
   const sortedTasks = [...state.tasks].sort((a, b) => {
     if (filter === "Priority") {
       const priorityOrder: Record<Task["priority"], number> = {
@@ -47,16 +47,12 @@ function TaskList({
         Medium: 2,
         Low: 3,
       };
-      return isAscending
-        ? priorityOrder[a.priority] - priorityOrder[b.priority]
-        : priorityOrder[b.priority] - priorityOrder[a.priority];
+      return priorityOrder[a.priority] - priorityOrder[b.priority];
     }
     if (filter === "Time") {
       const dateA = new Date(a.date);
       const dateB = new Date(b.date);
-      return isAscending
-        ? dateA.getTime() - dateB.getTime()
-        : dateB.getTime() - dateA.getTime();
+      return dateA.getTime() - dateB.getTime();
     }
     return 0;
   });
