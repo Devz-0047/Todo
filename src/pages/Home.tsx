@@ -34,6 +34,10 @@ import TaskList from "../components/TaskList";
 function Home() {
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
   const [taskBgColor, setTaskBgColor] = useState<string>("");
+  const [filter, setFilter] = useState<string>("Time");
+  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(e.target.value);
+  };
 
   const handleIsFormOpen = () => {
     setIsFormOpen(!isFormOpen);
@@ -46,7 +50,7 @@ function Home() {
   return (
     <div className="flex flex-col h-screen">
       <div className="flex-shrink-0">
-        <Navbar />
+        <Navbar filter={filter} handleFilterChange={handleFilterChange} />
       </div>
 
       <div className="flex flex-grow">
@@ -60,6 +64,7 @@ function Home() {
             isFormOpen={isFormOpen}
             taskBgColor={taskBgColor}
             handleIsFormOpen={handleIsFormOpen}
+            filter={filter}
           />
         </div>
       </div>

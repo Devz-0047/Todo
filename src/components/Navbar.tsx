@@ -1,18 +1,19 @@
 import { ReactElement, useState } from "react";
 import todo from "../assets/todo.png";
 import { FiSearch } from "react-icons/fi";
-function Navbar(): ReactElement {
+interface NavProps {
+  filter: string;
+  handleFilterChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+function Navbar({ filter, handleFilterChange }: NavProps): ReactElement {
   const [query, setQuery] = useState<string>("");
-  const [filter, setFilter] = useState<string>("Time");
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // console.log(query);
-  };
-  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilter(e.target.value);
   };
 
   return (
