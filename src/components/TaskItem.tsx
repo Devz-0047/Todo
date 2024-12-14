@@ -47,7 +47,7 @@ function TaskItem({ taskData }: TaskItemProps) {
             dispatch({ type: "REMOVE_TASK", payload: taskData.id })
           }
         >
-          <MdDelete className="text-2xl hover:text-red-700" />
+          <MdDelete className="text-2xl hover:text-red-600" />
         </button>
       </div>
       <div className="absolute bottom-2 right-8">
@@ -58,7 +58,9 @@ function TaskItem({ taskData }: TaskItemProps) {
         >
           <IoCheckmarkDoneCircle
             className={
-              taskData.completed ? "text-2xl text-green-600" : "text-2xl"
+              taskData.completed
+                ? "text-2xl text-green-600"
+                : "text-2xl hover:text-green-600"
             }
           />
         </button>

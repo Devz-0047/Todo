@@ -68,6 +68,20 @@ npm run dev
 
 ## 4. Screenshots
 
-### Task Manager interface
+### Task Manager interfaces
+
+#### Full Screen
 
 ![Home Page](./screenshots/Home.PNG)
+
+#### Medium Screen
+
+![Home Page, Medium Screen](./screenshots/HomeMedium.PNG)
+
+#### Small Screen
+
+![Home Page, Small Screen](./screenshots/HomeSmall.PNG)
+
+#### Mobile Phone Screen
+
+![Home Page, Small Screen](./screenshots/HomeMP.PNG)
