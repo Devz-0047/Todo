@@ -18,7 +18,11 @@ function Navbar({ filter, handleFilterChange }: NavProps): ReactElement {
 
   return (
     <div className="flex items-center justify-between h-[5rem] w-screen bg-zinc-200">
-      <img src={todo} alt="ToDo" className="h-12 pl-6 " />
+      <img
+        src={todo}
+        alt="ToDo"
+        className="w-20 h-8 md:h-[4rem] md:w-[10rem] md:pl-6 sm:h-[3rem] sm:w-[8rem] sm:pl-4 "
+      />
       <div className="flex items-center gap-4">
         <form
           onSubmit={handleSubmitForm}
@@ -30,18 +34,18 @@ function Navbar({ filter, handleFilterChange }: NavProps): ReactElement {
             placeholder="Search"
             value={query}
             onChange={handleInputChange}
-            className="flex-grow py-2 pl-3 pr-8 text-xl rounded-sm outline-none bg-zinc-50 "
+            className="flex-grow w-[8rem] pr-3 py-2 sm:w-[16rem] md:w-[20rem] text-lg rounded-sm outline-none md:py-2 md:pl-3 md:pr-8 md:text-xl bg-zinc-50 "
           />
         </form>
-        <form className="sm:pl-4 mr-8 sm:pr-4 bg-[#31291D] sm:py-2 text-slate-50 flex items-center justify-between gap-2 py-0 pl-1">
+        <form className="sm:pl-1 md:mr-8 sm:pr-1 bg-[#31291D] sm:py-2 md:text-lg text-base text-slate-50 flex items-center justify-between md:gap-2 py-2  px-1 md:pl-1 lg:px-3">
           <div>
-            <label className="text-lg font-semibold md:text-md md-font-normal">
+            <label className="pr-1 text-base font-semibold md:text-lg md:text-md md-font-normal">
               Sort By{" "}
             </label>
           </div>
           <div>
             <select
-              className="sm:px-2 py-[0.12rem] bg-[#c1bfbb] text-mg font-semibold text-slate-950 px-0"
+              className="sm:px-1  py-[0.12rem] bg-[#c1bfbb] text-mg text-center font-semibold text-slate-950 px-0"
               value={filter}
               onChange={handleFilterChange}
             >

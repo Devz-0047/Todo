@@ -59,14 +59,12 @@ function TaskList({
   return (
     <div className="mt-12 ">
       <ul className="flex flex-wrap items-center justify-center gap-16">
-        {isFormOpen ? (
-          <TaskInput
-            bgColor={taskBgColor}
-            handleIsFormOpen={handleIsFormOpen}
-          />
-        ) : (
-          <></>
-        )}
+        <TaskInput
+          bgColor={taskBgColor}
+          handleIsFormOpen={handleIsFormOpen}
+          isFormOpen={isFormOpen}
+        />
+
         {sortedTasks.map((task) => (
           <li key={task.id}>
             <TaskItem taskData={task} bgColor={taskBgColor} />
