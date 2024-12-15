@@ -31,14 +31,24 @@ function TaskItem({ taskData }: TaskItemProps) {
   }
   return (
     <div
-      className="min-w-[16rem] max-w-[16rem] min-h-[17rem] rounded-md relative"
-      style={{ backgroundColor: taskData.bgColor }}
+      className={`min-w-[16rem] max-w-[16rem] min-h-[17rem] rounded-md relative ${
+        taskData.completed ? "bg-gray-400" : `bg-[${taskData.bgColor}]`
+      }`}
+      style={{
+        backgroundColor: taskData.completed ? "gray" : taskData.bgColor,
+      }}
     >
       {renderPriority()}
       <div className="pt-2 text-xl font-semibold text-center">
         {taskData.title}
       </div>
-      <div className="pl-2 text-md text-wrap">{taskData.description}</div>
+      <div
+        className={`pl-2 text-md text-wrap decoration-2 ${
+          taskData.completed ? "line-through" : ""
+        }`}
+      >
+        {taskData.description}
+      </div>
       <div className="absolute bottom-2 left-2">{taskData.date}</div>
 
       <div className="absolute bottom-2 right-2">
@@ -59,7 +69,7 @@ function TaskItem({ taskData }: TaskItemProps) {
           <IoCheckmarkDoneCircle
             className={
               taskData.completed
-                ? "text-2xl text-green-600"
+                ? "text-2xl text-green-700"
                 : "text-2xl hover:text-green-600"
             }
           />
