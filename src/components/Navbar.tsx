@@ -21,7 +21,7 @@ function Navbar({ filter, handleFilterChange }: NavProps): ReactElement {
       <img
         src={todo}
         alt="ToDo"
-        className="w-16 h-8 md:h-[4rem] md:w-[10rem] md:pl-6 sm:h-[3rem] sm:w-[8rem] sm:pl-4 "
+        className="w-16 h-8 md:h-[3rem] md:w-[10rem] md:pl-6 sm:h-[2rem] sm:w-[8rem] sm:pl-4 "
       />
       <div className="flex items-center gap-4">
         <form
@@ -45,7 +45,7 @@ function Navbar({ filter, handleFilterChange }: NavProps): ReactElement {
           </div>
           <div>
             <select
-              className="sm:px-1 text-sm  py-[0.12rem] bg-[#c1bfbb] text-mg text-center font-semibold text-slate-950  w-12 px-1"
+              className="sm:px-1 text-sm  py-[0.12rem] bg-[#c1bfbb] sm:text-base text-center font-semibold text-slate-950  w-12  sm:w-16 px-1 md:px-2"
               value={filter}
               onChange={handleFilterChange}
             >
